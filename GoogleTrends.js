@@ -8,15 +8,28 @@ const googleTrends = require('google-trends-api');
 //   console.error('Oh no there was an error', err);
 // });
 
-googleTrends.interestByRegion({
-    keyword: 'tacos, trump',
+// googleTrends.interestByRegion({
+//     keyword: 'tacos',
+//     startTime: new Date('2018-07-01'),
+//     endTime: new Date('2018-07-02'),
+//     geo: 'US',
+// })
+// .then((res) => {
+// console.log(res);
+// })
+// .catch((err) => {
+// console.log(err);
+// });
+
+googleTrends.interestOverTime({
+    keyword: ['tacos', 'burritos', 'quesadilla'],
     startTime: new Date('2018-07-01'),
     endTime: new Date('2018-07-02'),
-    geo: 'US-IL',
+    geo: 'US',
 })
-.then((res) => {
-console.log(res);
+.then(function(results){
+  console.log(results);
 })
-.catch((err) => {
-console.log(err);
-})
+.catch(function(err){
+  console.error(err);
+});

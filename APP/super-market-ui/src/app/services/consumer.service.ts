@@ -7,21 +7,15 @@ export class ConsumerService {
   private url = 'http://localhost:8091';
   private socket;
 
-  constructor() { }
 
-  /*
-  sendMessage(message) {
-    this.socket.emit('add-message', message);
-    console.log("MESSAGE SENT");
-  }
-  */
+  constructor() { }
 
   getLiveData() {
     const observable = new Observable(observer => {
       this.socket = io(this.url);
-      this.socket.on('webevents.dev', (data) => {
-
-        observer.next(data);
+      this.socket.on('message', (data) => {
+        const response = JSON.parse(data);
+        observer.next(response.data);
       });
       return () => {
         this.socket.disconnect();

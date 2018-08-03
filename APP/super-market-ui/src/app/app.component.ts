@@ -27,7 +27,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.connection = this.consumerService.getLiveData().subscribe(webevent => {
       this.webevents.push(webevent);
       // message["y"] = +message["y"];
-      this.refObj.chart.series[0].addPoint(webevent, false);
+      this.refObj.chart.series[0].addPoint(webevent['trend'], false);
       this.refObj.chart.redraw();
     });
   }
@@ -60,7 +60,9 @@ export class AppComponent implements OnInit, OnDestroy {
         text: 'Live Food Trends'
       },
       xAxis: {
-        opposite: true
+        opposite: true,
+        type: 'datetime',
+        tickPixelInterval: 150
       },
       yAxis: { opposite: true },
       exporting: {

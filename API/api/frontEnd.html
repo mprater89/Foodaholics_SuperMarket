@@ -1,0 +1,98 @@
+<DOCTYPE html>
+
+    <script type="text/javascript">
+        // var xhr = new XMLHttpRequest();
+        // var url = "http://localhost:3000/top5";
+        // xhr.open("POST", url, true);
+        // xhr.setRequestHeader("Content-Type", "application/json");
+        // xhr.onreadystatechange = function () {
+        //     if (xhr.readyState === 4 && xhr.status === 200) {
+        //         var json = JSON.parse(xhr.responseText);
+        //         console.log(json.email + ", " + json.password);
+        //     }
+        // };
+
+        // function myFunction() {
+        //     document.getElementById("trends").submit();
+        // }
+        function submitForm(){
+            console.log(trends)
+            var formData = JSON.stringify($("trends").serializeArray());
+
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:3000/top5",
+                data: formData,
+                success: function(){},
+                dataType: "json",
+                contentType : "application/json"
+            });
+
+            console.log(formData)
+        }
+        
+
+        // var $form = $("trends");
+        // var data = getFormData($form); 
+        //         console.log("Entering funciton")
+        // function getFormData($form){
+        //     var unindexed_array = $form.serializeArray();
+        //     var indexed_array = {};
+
+        //     $.map(unindexed_array, function(n, i){
+        //         indexed_array[n['name']] = n['id'];
+        //     });
+
+        //     return indexed_array;
+        // }
+        // console.log(indexed_array)
+        // var data = JSON.stringify({"email": "hey@mail.com", "password": "101010"});
+        // xhr.send(data);
+
+
+        // function post(path, params, method) {
+        //     method = method || "post"; // Set method to post by default if not specified.
+
+        //     // The rest of this code assumes you are not using a library.
+        //     // It can be made less wordy if you use one.
+        //     var form = document.createElement("form");
+        //     form.setAttribute("method", method);
+        //     form.setAttribute("action", path);
+
+        //     for(var key in params) {
+        //         if(params.hasOwnProperty(key)) {
+        //             var field = document.createElement("input");
+        //             field.setAttribute("type", "text");
+        //             field.setAttribute("name", key);
+        //             field.setAttribute("id", params[key]);
+
+        //             form.appendChild(hiddenField);
+        //         }
+        //     }
+
+        //     document.body.appendChild(form);
+        //     form.submit();
+        // }
+    </script>
+    <body>
+        <!-- <form action="http://example.com/" method="POST">
+            <input type="hidden" name="q" value="a">
+          </form> -->
+
+
+        <form name="trends" action="http://localhost:3000/top5" method="post" enctype="application/json">
+            Type: <input type="text" name="type" id="type"><br>
+            UserId: <input type="text" name="userId" id="userId"><br>
+            SessionId: <input type="text" name="sessionId" id="sessionId"><br>
+            Keyword(s): <input type="text" name="data[keyword]" id="keyword"><br>
+            StartTime: <input type="text" name="data[startTime]" id="startTime"><br>
+            EndTime: <input type="text" name="data[endTime]" id="endTime"><br>
+            US State: <input type="text" name="data[geo]" id="geo"><br>
+            <input type="submit" value="Submit" onclick="submitform()">
+          </form>
+
+    </body>
+
+
+
+</DOCTYPE>

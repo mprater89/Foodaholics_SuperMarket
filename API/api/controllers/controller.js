@@ -5,7 +5,8 @@ const googleTrends = require('google-trends-api');
 
 exports.gettop5 = function(req, res){
     const body = req.body;
-   console.log(body.data)
+
+   console.log("its the body" + JSON.stringify(body))
     var kafkaData = trends(body.data);
     console.log("This is Kafka" + kafkaData)
 
@@ -16,6 +17,7 @@ exports.gettop5 = function(req, res){
 };
 
 function trends(data) {
+    console.log(data)
     console.log(data.keyword);
     var start = new Date(data.startTime);
     var end = new Date(data.endTime);

@@ -33,3 +33,5 @@ googleTrends.interestOverTime({
 .catch(function(err){
   console.error(err);
 });
+
+console.log(module.exports);
